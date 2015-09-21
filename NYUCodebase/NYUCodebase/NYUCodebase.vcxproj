@@ -141,6 +141,8 @@
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="ShaderProgram.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="pong.cpp" />
+    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Matrix.h" />

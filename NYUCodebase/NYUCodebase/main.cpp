@@ -16,6 +16,7 @@
 SDL_Window* displayWindow;
 GLuint loadTexture(const char *image_path);
 float lastFrameTicks = 0.0f;
+float angle = 0;
 
 int main(int argc, char *argv[])
 {
@@ -41,11 +42,14 @@ int main(int argc, char *argv[])
 		
 		
 
-		
-		
+		GLuint skeletonTex = loadTexture("skeleton.png");
+		GLuint nyanTex = loadTexture("nyan.png");
+		GLuint eyeTex = loadTexture("eye.png");
 
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		
-
+		
 
 	SDL_Event event;
 	bool done = false;
@@ -54,17 +58,35 @@ int main(int argc, char *argv[])
 			if (event.type == SDL_QUIT || event.type == SDL_WINDOWEVENT_CLOSE) {
 				done = true;
 			}
+			else if (event.type == SDL_KEYDOWN) {
+				if (event.key.keysym.scancode == SDL_SCANCODE_SPACE) {
+					angle = 0.0f;
+				}
+			}
 		}
 
 		float ticks = (float)SDL_GetTicks() / 1000.0f;
 		float elapsed = ticks - lastFrameTicks;
 
-		float angle = 0;
-		angle += elapsed;
+		glClearColor(0.5f, 0.5f, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		const Uint8 *keys = SDL_GetKeyboardState(NULL);
+
+		if (keys[SDL_SCANCODE_LEFT]) {
+			//go left
+			angle += elapsed;
+		}
+		else if (keys[SDL_SCANCODE_RIGHT]) {
+			// go right
+			angle -= elapsed;
+		}
+
+		
 
 		projectionMatrix.setOrthoProjection(-3.55f, 3.55f, -2.0f, 2.0f, -1.0f, 1.0f);
 		modelMatrix.identity();
-
+		modelMatrix.Rotate(elapsed * (3.1415926f / 180.0f));
 
 		program.setModelMatrix(modelMatrix);
 		program.setProjectionMatrix(projectionMatrix);
@@ -74,33 +96,31 @@ int main(int argc, char *argv[])
 
 		
 
-		glEnableVertexAttribArray(program.positionAttribute);
+		
 	
 		//eye
 
-		float vertices1[] = { 0.5f, -0.5f, 0.5f, 0.5f, -0.5f, -0.5f };
-		float vertices2[] = { -0.5f, 0.5f, -0.5f, -0.5f, 0.5f, 0.5f };
+		float vertices1[] = {-0.5f, 0.5f, -0.5f, -0.5f, 0.5f, 0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f, -0.5f };
+		//float vertices2[] = { -0.5f, 0.5f, -0.5f, -0.5f, 0.5f, 0.5f };
 
 		glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices1);
-		glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices2);
+		glEnableVertexAttribArray(program.positionAttribute);
 
-
-		float texCoords1[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
-		float texCoords2[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
-
+		float texCoords1[] = { 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f };
 		glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords1);
-		glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords2);
+		glEnableVertexAttribArray(program.texCoordAttribute);
 
 		loadTexture("eye.png");
 
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+
 		//nyan
 
-		float vertices3[] = { 1.5f, -0.5f, 1.5f, 0.5f, 0.5f, -0.5f };
-		float vertices4[] = { 0.5f, 0.5f, 0.5f, -0.5f, 1.5f, 0.5f };
+		float vertices3[] = { 1.5f, -0.5f, 1.5f, 0.5f, 0.5f, -0.5f, 0.5f, 0.5f, 0.5f, -0.5f, 1.5f, 0.5f };
+		
 
 		glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices3);
-		glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices4);
-
+		glEnableVertexAttribArray(program.positionAttribute);
 
 		float texCoords3[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
 		float texCoords4[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
@@ -110,16 +130,15 @@ int main(int argc, char *argv[])
 
 		loadTexture("nyan.png");
 
-		modelMatrix.Rotate(elapsed * (3.1415926f / 180.0f));
+		glDrawArrays(GL_TRIANGLES, 0, 3);
 
 		//skeleton
 
-		float vertices5[] = { -0.5f, -0.5f, -1.0f, 0.5f, -1.5f, -0.5f };
-		float vertices6[] = { -1.5f, 0.5f, -1.5f, -0.5f, -0.5f, 0.5f };
-
+		float vertices5[] = { -0.5f, -0.5f, -1.0f, 0.5f, -1.5f, -0.5f, -1.5f, 0.5f, -1.5f, -0.5f, -0.5f, 0.5f };
+		//float vertices6[] = { -1.5f, 0.5f, -1.5f, -0.5f, -0.5f, 0.5f };
+		
 		glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices5);
-		glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices6);
-
+		glEnableVertexAttribArray(program.positionAttribute);
 
 		float texCoords5[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
 		float texCoords6[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
@@ -129,24 +148,24 @@ int main(int argc, char *argv[])
 
 		loadTexture("skeleton.png");
 		
+		glDrawArrays(GL_TRIANGLES, 0, 3);
 
 		//test
 		glBegin(GL_TRIANGLES);
 
 		glVertex3f(-1.0f, 1.0f, 0.0f);
-		glVertex3f(0.0f, 3.0f, 0.0f);
-		glVertex3f(1.0f, 3.0f, 0.0f);
+		glVertex3f(0.0f, 2.0f, 0.0f);
+		glVertex3f(1.0f, 2.0f, 0.0f);
 
 		glEnd();
 
 		
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-
 		
 
 
-		glClearColor(0.5f, 0.5f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glDisableVertexAttribArray(program.positionAttribute);
+		glDisableVertexAttribArray(program.texCoordAttribute);
+		
 		SDL_GL_SwapWindow(displayWindow);
 		lastFrameTicks = ticks;
 	}
