@@ -61,32 +61,37 @@ int main(int argc, char *argv[])
 			else if (event.type == SDL_KEYDOWN) {
 				if (event.key.keysym.scancode == SDL_SCANCODE_SPACE) {
 					angle = 0.0f;
+					std::cout << "Space pressed!" << std::endl;
 				}
 			}
 		}
 
 		float ticks = (float)SDL_GetTicks() / 1000.0f;
 		float elapsed = ticks - lastFrameTicks;
+		lastFrameTicks = ticks;
+		
 
-		glClearColor(0.5f, 0.5f, 0.0f, 1.0f);
+		glClearColor(0.5f, 0.5f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		const Uint8 *keys = SDL_GetKeyboardState(NULL);
 
 		if (keys[SDL_SCANCODE_LEFT]) {
 			//go left
+			std::cout << "Pressing Left" << std::endl;
 			angle += elapsed;
 		}
 		else if (keys[SDL_SCANCODE_RIGHT]) {
 			// go right
+			std::cout << "Pressing Right" << std::endl;
 			angle -= elapsed;
 		}
 
 		
 
 		projectionMatrix.setOrthoProjection(-3.55f, 3.55f, -2.0f, 2.0f, -1.0f, 1.0f);
-		modelMatrix.identity();
-		modelMatrix.Rotate(elapsed * (3.1415926f / 180.0f));
+		//modelMatrix.identity();
+		modelMatrix.Rotate(elapsed * 20 * (3.1415926f / 180.0f));
 
 		program.setModelMatrix(modelMatrix);
 		program.setProjectionMatrix(projectionMatrix);
@@ -99,6 +104,7 @@ int main(int argc, char *argv[])
 		
 	
 		//eye
+		loadTexture("eye.png");
 
 		float vertices1[] = {-0.5f, 0.5f, -0.5f, -0.5f, 0.5f, 0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f, -0.5f };
 		//float vertices2[] = { -0.5f, 0.5f, -0.5f, -0.5f, 0.5f, 0.5f };
@@ -106,51 +112,55 @@ int main(int argc, char *argv[])
 		glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices1);
 		glEnableVertexAttribArray(program.positionAttribute);
 
-		float texCoords1[] = { 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f };
+		float texCoords1[] = { 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f};
 		glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords1);
 		glEnableVertexAttribArray(program.texCoordAttribute);
 
-		loadTexture("eye.png");
+		
 
-		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glDrawArrays(GL_TRIANGLES, 0, 12);
+		
 
 		//nyan
+		loadTexture("nyan.png");
 
-		float vertices3[] = { 1.5f, -0.5f, 1.5f, 0.5f, 0.5f, -0.5f, 0.5f, 0.5f, 0.5f, -0.5f, 1.5f, 0.5f };
+		float vertices3[] = { 1.5f, -0.5f, 2.5f, 0.5f, 1.5f, 0.5f, 1.5f, -0.5f, 2.5f, -0.5f, 2.5f, 0.5f };
 		
 
 		glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices3);
 		glEnableVertexAttribArray(program.positionAttribute);
 
-		float texCoords3[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
-		float texCoords4[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
+		float texCoords3[] = { 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f };
 
 		glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords3);
-		glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords4);
+		glEnableVertexAttribArray(program.texCoordAttribute);
 
-		loadTexture("nyan.png");
 
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		
+
+		glDrawArrays(GL_TRIANGLES, 0, 12);
 
 		//skeleton
+		loadTexture("skeleton.png");
 
-		float vertices5[] = { -0.5f, -0.5f, -1.0f, 0.5f, -1.5f, -0.5f, -1.5f, 0.5f, -1.5f, -0.5f, -0.5f, 0.5f };
+		float vertices5[] = { -1.5f, 0.5f, -1.5f, -0.5f, -0.5f, 0.5f, -0.5f, -0.5f, -0.5f, 0.5f, -1.5f, 0.5f };
 		//float vertices6[] = { -1.5f, 0.5f, -1.5f, -0.5f, -0.5f, 0.5f };
 		
 		glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, vertices5);
 		glEnableVertexAttribArray(program.positionAttribute);
 
-		float texCoords5[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
-		float texCoords6[] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
+		float texCoords5[] = { 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f };
 
 		glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords5);
-		glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, texCoords6);
+		glEnableVertexAttribArray(program.texCoordAttribute);
 
-		loadTexture("skeleton.png");
 		
-		glDrawArrays(GL_TRIANGLES, 0, 3);
+		
+		glDrawArrays(GL_TRIANGLES, 0, 12);
 
 		//test
+
+		/*
 		glBegin(GL_TRIANGLES);
 
 		glVertex3f(-1.0f, 1.0f, 0.0f);
@@ -158,7 +168,7 @@ int main(int argc, char *argv[])
 		glVertex3f(1.0f, 2.0f, 0.0f);
 
 		glEnd();
-
+		*/
 		
 		
 
@@ -167,7 +177,7 @@ int main(int argc, char *argv[])
 		glDisableVertexAttribArray(program.texCoordAttribute);
 		
 		SDL_GL_SwapWindow(displayWindow);
-		lastFrameTicks = ticks;
+		
 	}
 
 	SDL_Quit();
