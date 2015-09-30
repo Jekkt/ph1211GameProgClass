@@ -1,0 +1,21 @@
+﻿Build started 30.09.2015 03:34:08.
+     1>Project "C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\NYUCodebase\NYUCodebase.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /IC:\SDL2\include /IC:\SDL2_image\include /IC:\glew\include /IC:\SDL2_mixer\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _WINDOWS /D _MBCS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>c:\users\philip\documents\visual studio 2015\projects\nyucodebase\nyucodebase\main.cpp(184): warning C4804: '>': unsafe use of type 'bool' in operation
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\Debug\NYUCodebase.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL2 /LIBPATH:C:\glew /LIBPATH:C:\SDL2_mixer /LIBPATH:C:\SDL2_image /LIBPATH:C:\SDL2_mixer\lib\x86 /LIBPATH:C:\SDL2\lib\x86 /LIBPATH:C:\SDL2_image\lib\x86 /LIBPATH:C:\glew\lib\Release\Win32 SDL2.lib SDL2_mixer.lib glew32.lib SDL2main.lib SDL2_image.lib OpenGL32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\Debug\NYUCodebase.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\Debug\NYUCodebase.lib" /MACHINE:X86 Debug\ClassDemoApp.obj
+         Debug\Controller.obj
+         Debug\main.obj
+         Debug\Matrix.obj
+         Debug\ShaderProgram.obj
+         Debug\SceneManager.obj
+         Debug\pong.obj
+         Debug\Source.obj
+         NYUCodebase.vcxproj -> C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\Debug\NYUCodebase.exe
+     1>Done Building Project "C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\NYUCodebase\NYUCodebase.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.31
