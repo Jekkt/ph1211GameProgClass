@@ -1,0 +1,27 @@
+﻿Build started 28.09.2015 16:50:54.
+     1>Project "C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\NYUCodebase\NYUCodebase.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /IC:\SDL2\include /IC:\SDL2_image\include /IC:\glew\include /IC:\SDL2_mixer\include /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _WINDOWS /D _MBCS /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>main.cpp(112): warning C4477: 'printf' : format string '%i' requires an argument of type 'int', but variadic argument 1 has type 'SDL_MouseButtonEvent'
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\Release\NYUCodebase.exe" /NOLOGO /LIBPATH:C:\SDL2_mixer\lib\x86 /LIBPATH:C:\SDL2\lib\x86 /LIBPATH:C:\SDL2_image\lib\x86 /LIBPATH:C:\glew\lib\Release\Win32 SDL2.lib SDL2_mixer.lib glew32.lib SDL2main.lib SDL2_image.lib OpenGL32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\Release\NYUCodebase.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG:incremental /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\Release\NYUCodebase.lib" /MACHINE:X86 /SAFESEH Release\ClassDemoApp.obj
+         Release\Controller.obj
+         Release\main.obj
+         Release\Matrix.obj
+         Release\ShaderProgram.obj
+         Release\SceneManager.obj
+         Release\pong.obj
+         Release\Source.obj
+         Generating code
+     1>c:\users\philip\documents\visual studio 2015\projects\nyucodebase\nyucodebase\main.cpp(248): warning C4715: 'SDL_main': not all control paths return a value
+         1 of 182 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+           0 functions were new in current compilation
+           0 functions had inline decision re-evaluated but remain unchanged
+         Finished generating code
+         NYUCodebase.vcxproj -> C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\Release\NYUCodebase.exe
+     1>Done Building Project "C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\NYUCodebase\NYUCodebase.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.89
