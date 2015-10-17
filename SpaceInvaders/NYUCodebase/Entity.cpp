@@ -88,6 +88,7 @@ bool Entity::collideWith(Entity *ent) {
 					ent->isActive = false;
 					ent->isShot = false;
 					std::cout << "Alien destroyed." << std::endl;
+					return true;
 				}
 			}
 

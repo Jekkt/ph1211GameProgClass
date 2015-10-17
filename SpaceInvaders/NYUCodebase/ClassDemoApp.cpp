@@ -100,6 +100,9 @@ void ClassDemoApp::Update(float elapsed) {
 		break;
 	case STATE_GAME_LEVEL:
 		Level->Update(elapsed);
+		if (Level->gameIsOver) {
+			state = 2;
+		}
 		break;
 	case STATE_GAME_OVER:
 		Over->Update(elapsed);

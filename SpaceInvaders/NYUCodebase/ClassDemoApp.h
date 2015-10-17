@@ -60,7 +60,7 @@ public:
 
 		enum GameState{ STATE_MAIN_MENU, STATE_GAME_LEVEL, STATE_GAME_OVER };
 
-		int state = STATE_GAME_LEVEL;
+		int state = STATE_MAIN_MENU;
 
 		void DrawSpriteSheetSprite(int index, int spriteCountX, int spriteCountY);
 

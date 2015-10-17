@@ -10,6 +10,11 @@ public:
 	gameLevel(ShaderProgram *program);
 	~gameLevel();
 
+	bool gameIsOver;
+
+	int score;
+
+	int accumulator = 39;
 
 	void DrawText(int fontTexture, std::string text, float size, float spacing);
 

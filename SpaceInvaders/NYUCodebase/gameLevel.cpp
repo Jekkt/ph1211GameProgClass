@@ -96,8 +96,9 @@ void gameLevel::Render() {
 	DrawText(comicFont, "SCORE<1> HI-SCORE SCORE<2>", 0.30f, 0.001f);
 	modelMatrix.Translate(0.0f, -0.5f, 0);
 	programLevel->setModelMatrix(modelMatrix);
-	DrawText(comicFont, "  0000    0000      0000  ", 0.30f, 0.001f);
+	DrawText(comicFont, " " + std::to_string(score) + "    0000      0000  ", 0.30f, 0.001f);
 
+	
 
 	player->render(programLevel);
 	for (int i = 0; i < 13; i++) {
@@ -123,17 +124,28 @@ void gameLevel::Update(float elapsed) {
 	player->update(elapsed);
 	bullets[0]->update(elapsed);
 
+
 	for each (Entity *ents in bullets)
 	{
 		
 		if (ents->isActive) {
+
+			//std::cout << score << std::endl;
+			for each (Entity *alien in invaderA) { 
+				if (alien->isActive) { if (alien->collideWith(ents)) { score += 20; accumulator--;
+				} }
+			}
+			for each (Entity *alien in invaderB) { 
+				if (alien->isActive) { if (alien->collideWith(ents)) { score += 20; accumulator--;
+				} } }
+			for each (Entity *alien in invaderC) {
+				if (alien->isActive) { if (alien->collideWith(ents)) { score += 20; accumulator--;
+				} } }
 			
-			//std::cout << "checking bullets" << std::endl;
-			for each (Entity *alien in invaderA) { if (alien->isActive) { alien->collideWith(ents); } }
-			for each (Entity *alien in invaderB) { if (alien->isActive) { alien->collideWith(ents); } }
-			for each (Entity *alien in invaderC) { if (alien->isActive) { alien->collideWith(ents); } }
 		}
 	}
+
+	if (accumulator == 0) { gameIsOver = true; }
 	
 }
 
