@@ -166,9 +166,13 @@
     <ClInclude Include="Vector.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="fragment.glsl" />
+    <None Include="fragment.glsl">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="fragment_textured.glsl" />
     <None Include="vertex.glsl" />
+    <None Include="vertex_textured.glsl" />
+    <None Include="zlib1.dll" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="text\ComicFont.tga" />

@@ -50,6 +50,12 @@ void Entity::update(float elapsed) {
 
 		
 
+		if (collidedBottom) {
+			velocity_y = 0;
+			isOnGround = true;
+		}
+
+
 		if (isOnGround) {
 			gravity = 0.0f;
 		}
@@ -68,9 +74,7 @@ void Entity::update(float elapsed) {
 			velocity_x = -2.0f;
 		}
 
-		if (collidedBottom) {
-			velocity_y = 0;
-		}
+		
 
 		if (collidedLeft && velocity_x < 0) { velocity_x = 0; collidedLeft = false; }
 
@@ -80,6 +84,12 @@ void Entity::update(float elapsed) {
 		yPos += velocity_y *elapsed * 4;
 
 		if (fps > 0.016f) { fps = 0; collidedBottom = false; }
+
+		if (tillFall-width > xPos || tillFall+width < xPos && tillFall != 0) {
+			isOnGround = false;
+			std::cout << "left last block" << std::endl;
+			tillFall = 0;
+		}
 
 	}
 
@@ -123,6 +133,7 @@ bool Entity::collideWith(Entity *ent) {
 	float pointX = xPos;
 	float pointY = yPos;
 	float threshold = 0.030f;
+	float penetration = fabs(xPos - ent->xPos - width / 2 - ent->width / 2);
 
 	
 
@@ -130,7 +141,7 @@ bool Entity::collideWith(Entity *ent) {
 
 		//std::cout << ent->width<< std::endl;
 
-		float penetration = fabs(xPos - ent->xPos - width / 2 - ent->width / 2);
+		
 
 		if (right - threshold*2 > ent->xPos - ent->width/2 && left + threshold*2 < ent->xPos + ent->width/2 ) {
 			//std::cout << "player hit bottom." << std::endl;
@@ -139,12 +150,14 @@ bool Entity::collideWith(Entity *ent) {
 				std::cout << "Tile yPos" << ent->yPos << "Tile xPos" << ent->xPos << std::endl;
 				std::cout << "Player yPos" << yPos << "Player xPos" << xPos << std::endl;
 				collidedBottom = true;
-				isOnGround = true;
-				yPos = ent->yPos + ent->height + threshold;
+				//yPos = ent->yPos + ent->height + threshold/2;
+				penetration = fabs(yPos - ent->yPos - height / 2 - ent->height / 2);
+				yPos = yPos + penetration + threshold;
+				tillFall = xPos;
 			}
 		}
 
-		if (yPos > ent->yPos - ent->height && yPos < ent->yPos + ent->height) {
+		if (yPos > ent->yPos - ent->height - threshold && yPos < ent->yPos + ent->height) {
 			if (left <= ent->xPos + ent->width - threshold && left >= ent->xPos) {
 				std::cout << "player hit left." << std::endl;
 				std::cout << "Tile yPos" << ent->yPos << "Tile xPos" << ent->xPos << std::endl;

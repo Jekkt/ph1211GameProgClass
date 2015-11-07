@@ -28,6 +28,8 @@ public:
 
 	EntityType type;
 
+	float tillFall;
+
 	ShaderProgram *programEnt;
 
 	bool isStatic;

@@ -97,6 +97,8 @@
     <None Include="fragment.glsl" />
     <None Include="vertex.glsl" />
     <None Include="fragment_textured.glsl" />
+    <None Include="zlib1.dll" />
+    <None Include="vertex_textured.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="text\ComicFont.tga" />

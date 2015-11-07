@@ -14,6 +14,10 @@ ClassDemoApp::~ClassDemoApp() {
 	delete Level;
 	delete Over;
 	SDL_JoystickClose(joystick);
+
+	Mix_FreeChunk(jumpSound);
+	Mix_FreeChunk(bgMus);
+
 	SDL_QUIT;
 }
 
@@ -119,6 +123,10 @@ void ClassDemoApp::Update(float elapsed) {
 		break;
 	case STATE_GAME_LEVEL:
 		Level->Update(elapsed);
+		if (!musicIsPlaying) {
+			Mix_PlayChannel(-1, bgMus, -1);
+			musicIsPlaying = true;
+		}
 		if (Level->gameIsOver) {
 			state = 2;
 		}
@@ -165,6 +173,16 @@ void ClassDemoApp::Setup() {
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
+
+	
+
+	jumpSound = Mix_LoadWAV("Jump10.wav");
+	bgMus = Mix_LoadWAV("undyne_genocide");
+
+	
+
 }
 
 void ClassDemoApp::ProcessInput() {
@@ -198,10 +216,13 @@ void ClassDemoApp::ProcessInput() {
 					isJumping = true;
 					Level->test->velocity_y += 1.2f;
 					Level->test->isOnGround = false;
+					Mix_PlayChannel(-1, jumpSound, 0);
+					
 				}
 				else if (!doublejump && isJumping) {
 					doublejump = true;
 					Level->test->velocity_y += 1.2f;
+					Mix_PlayChannel(-1, jumpSound, 0);
 				}
 				break;
 			case SDLK_LEFT:

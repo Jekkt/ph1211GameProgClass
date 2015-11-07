@@ -15,6 +15,8 @@
 #include "gameOver.h"
 #include "TitleMenu.h"
 
+#include <SDL_mixer.h>
+
 #include "SheetSprite.h"
 
 //tilemaps
@@ -41,6 +43,9 @@ public:
 		void placeEntity(std::string type, float placeX, float placeY);
 
 		void Setup();
+
+		Mix_Chunk *jumpSound;
+		Mix_Chunk *bgMus;
 
 		void ProcessInput();
 		void Render();
@@ -96,6 +101,8 @@ private:
 	float lastFrameTicks = 0.0f;
 	float angle = 0;
 	bool done = false;
+
+	bool musicIsPlaying;
 
 	
 
