@@ -1,0 +1,44 @@
+﻿Build started 20.12.2015 21:37:42.
+     1>Project "C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\NYUCodebase\NYUCodebase.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /IC:\SDL2\include /IC:\SDL2_image\include /IC:\glew\include /IC:\SDL2_mixer\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _WINDOWS /D _MBCS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt ClassDemoApp.cpp MapLoader.cpp TitleMenu.cpp gameLevel.cpp gameOver.cpp main.cpp
+         gameLevel.cpp
+     1>c:\users\philip\documents\visual studio 2015\projects\nyucodebase\nyucodebase\gamelevel.cpp(164): warning C4018: '<': signed/unsigned mismatch
+         Generating Code...
+         Compiling...
+         ClassDemoApp.cpp
+     1>c:\users\philip\documents\visual studio 2015\projects\nyucodebase\nyucodebase\classdemoapp.cpp(1): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+     1>c:\users\philip\documents\visual studio 2015\projects\nyucodebase\nyucodebase\classdemoapp.cpp(147): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+     1>c:\users\philip\documents\visual studio 2015\projects\nyucodebase\nyucodebase\classdemoapp.cpp(155): warning C4244: 'argument': conversion from 'float' to 'GLsizei', possible loss of data
+     1>c:\users\philip\documents\visual studio 2015\projects\nyucodebase\nyucodebase\classdemoapp.cpp(156): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+     1>c:\users\philip\documents\visual studio 2015\projects\nyucodebase\nyucodebase\classdemoapp.cpp(360): warning C4477: 'printf' : format string '%i' requires an argument of type 'int', but variadic argument 1 has type 'SDL_MouseButtonEvent'
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         main.cpp
+         gameOver.cpp
+         TitleMenu.cpp
+         MapLoader.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\Debug\NYUCodebase.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL2 /LIBPATH:C:\glew /LIBPATH:C:\SDL2_mixer /LIBPATH:C:\SDL2_image /LIBPATH:C:\SDL2_mixer\lib\x86 /LIBPATH:C:\SDL2\lib\x86 /LIBPATH:C:\SDL2_image\lib\x86 /LIBPATH:C:\glew\lib\Release\Win32 SDL2.lib SDL2_mixer.lib glew32.lib SDL2main.lib SDL2_image.lib OpenGL32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /Debug /PDB:"C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\Debug\NYUCodebase.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\Debug\NYUCodebase.lib" /MACHINE:X86 Debug\Camera.obj
+         Debug\ClassDemoApp.obj
+         Debug\Controller.obj
+         Debug\Entity.obj
+         Debug\gameLevel.obj
+         Debug\gameOver.obj
+         Debug\main.obj
+         Debug\MapLoader.obj
+         Debug\Matrix.obj
+         Debug\ShaderProgram.obj
+         Debug\SceneManager.obj
+         Debug\pong.obj
+         Debug\SheetSprite.obj
+         Debug\Source.obj
+         Debug\TitleMenu.obj
+         Debug\Vector3.obj
+     1>MSVCRTD.lib(initializers.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
+         NYUCodebase.vcxproj -> C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\Debug\NYUCodebase.exe
+     1>Done Building Project "C:\Users\Philip\Documents\Visual Studio 2015\Projects\NYUCodebase\NYUCodebase\NYUCodebase.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:09.46
